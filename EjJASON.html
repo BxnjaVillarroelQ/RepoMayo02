@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"> 
+    <script>
+        let url='https://jsonplaceholder.typicode.com/users';
+        fetch(url)
+            .then(response=>response.json())
+            .then(data=>mostrarData(data))
+            .catch(error=>console.log(error))
+
+        const mostrarData=(data)=>{
+            console.log(data);
+            let body=""
+            for (let i = 0; i < data.length; i++){
+            body+=`<tr><td>${data[i].id}</td><td>${data[i].name}</td><td>${data[i].email}</td></tr>`
+                
+            }
+            document.getElementById('data').innerHTML=body
+        }
+
+
+    </script>
+
+    <script>
+        let url2='https://jsonplaceholder.typicode.com/posts';
+        fetch(url2)
+            .then(response=>response.json())
+            .then(data=>mostrardataPosts(data))
+            .catch(error=>console.log(error))
+
+        const mostrardataPosts=(data)=>{
+            console.log(data)
+            let dataPosts=""
+            for (let i = 0; i < data.length; i++){
+                if (data[i].userId == 1)
+                {
+                    dataPosts+=`<tr><td>${data[i].userId}</td><td>${data[i].id}</td><td>${data[i].title}</td><td>${data[i].body}</td></tr>`
+                }
+            
+                
+            }
+            document.getElementById('dataPosts').innerHTML=dataPosts
+        }
+
+
+    </script>
+    <title>yeiSon13</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Ej Api jsonPlaceholder</h2>
+        <table class="table resposive">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    
+
+                </tr>
+            </thead>
+            <tbody id="data">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <br>
+    <hr> <br>
+
+    <div class="container">
+        <h2>User 1</h2>
+        <table class="table resposive">
+            <thead>
+                <tr>
+                    <th>UserID</th>
+                    <th>ID</th>
+                    <th>Tittle</th>
+                    <th>Body</th>
+                    
+
+                </tr>
+            </thead>
+            <tbody id="dataPosts">
+
+            </tbody>
+
+        </table>
+
+    </div>
+</body>
+</html>
